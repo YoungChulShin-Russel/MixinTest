@@ -36,3 +36,12 @@ trait TaxablePolicy extends BasicRatePolicy {
         return fee + fee * taxRate
     }
 }
+
+
+////////////////////////////////////////////////////////////////
+// 기본 (일반) 요금 정책에 세금 할인을 추가해 주세요
+// -> 기본 (일반) 요금 정책에 세금할인을 믹스인 한다
+////////////////////////////////////////////////////////////////
+class TaxableRegularPolicy (val amount: Money, val seconds: Duration, val taxRate: Double) 
+    extends RegularPolicy(amount, seconds)
+    with TaxablePolicy
